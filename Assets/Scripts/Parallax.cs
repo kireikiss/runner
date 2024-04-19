@@ -14,10 +14,19 @@ public class Parallax : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(transform.position.x - parallaxEffect, transform.position.y, transform.position.z);
-        if (transform.localPosition.x < -20)
+        //un if para verificar lo que sucede en ese estado del juego
+        if (Controller_Hud.gameOver == false)
         {
-            transform.localPosition = new Vector3(20, transform.localPosition.y, transform.localPosition.z);
+            transform.position = new Vector3(transform.position.x - parallaxEffect, transform.position.y, transform.position.z);
+            if (transform.localPosition.x < -20)
+            {
+                transform.localPosition = new Vector3(20, transform.localPosition.y, transform.localPosition.z);
+            }
+        }
+        else
+        {
+            //se detiene el parallax al perder
+            parallaxEffect = 0;
         }
     }
 }

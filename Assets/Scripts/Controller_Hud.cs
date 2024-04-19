@@ -12,7 +12,7 @@ public class Controller_Hud : MonoBehaviour
     {
         gameOver = false;
         distance = 0;
-        distanceText.text = distance.ToString();
+        distanceText.text = distance.ToString("F0");
         gameOverText.gameObject.SetActive(false);
     }
 
@@ -21,13 +21,14 @@ public class Controller_Hud : MonoBehaviour
         if (gameOver)
         {
             Time.timeScale = 0;
-            gameOverText.text = "Game Over \n Total Distance: " + distance.ToString();
+            gameOverText.text = "Game Over \n Total Distance: " + distance.ToString("F0") + "m";
             gameOverText.gameObject.SetActive(true);
         }
         else
         {
             distance += Time.deltaTime;
-            distanceText.text = distance.ToString();
+            //Se agrega "F0" para redondear los decimales
+            distanceText.text = distance.ToString("F0");
         }
     }
 }
