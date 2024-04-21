@@ -13,7 +13,9 @@ public class Controller_Player : MonoBehaviour
     public Transform puntoDisparo;
     public float fuerzaDisparo;
 
- 
+    public float posicionZ = 5f; 
+    private Vector3 posicionOriginal; 
+    private bool isZModified = false; 
 
 
 
@@ -118,6 +120,29 @@ public class Controller_Player : MonoBehaviour
                 rbProjectil.AddForce(Vector2.right * fuerzaDisparo, ForceMode.Impulse);
             }
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("powerUp")) // si el objeto tiene el tag de powerup
+        {
+            Destroy(other.gameObject); // destruye el powerUp
+            if (!isZModified) // si no se tepeo, continua el codigo
+            {
+                StartCoroutine(ModifyPositionZTemporarily());
+            }
+        }
+    }
+
+    private IEnumerator ModifyPositionZTemporarily()
+    {
+        isZModified = true; //cambia el estado
+        posicionOriginal = transform.position; // se almacena la posición original
+        Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + posicionZ); // se crea una nueva posición Z
+        transform.position = newPosition; // se asigna la nueva posición
+
+        yield return new WaitForSeconds(3); 
+        transform.position = posicionOriginal; // se restablece la posición original
+        isZModified = false; // vuelve el estado a falso
     }
 
 }
