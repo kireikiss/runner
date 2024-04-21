@@ -662,6 +662,7 @@ MonoBehaviour:
   - {fileID: 4362255490418720725, guid: 10839c286a1f27947bc1fa05aee0bfdb, type: 3}
   - {fileID: 9145002132079440597, guid: 0e6260b13f6e84c47b94dd28da588bcd, type: 3}
   - {fileID: 4184394900866946432, guid: 6518169d3178329458b56e0c168c3ff4, type: 3}
+  - {fileID: 7797819764562556819, guid: 6c3af49b141d6144f88bcb3584582386, type: 3}
   instantiatePos: {fileID: 432534838}
   respawningTimer: 0
 --- !u!4 &432534840

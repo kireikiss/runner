@@ -6,6 +6,7 @@ public class Controller_Enemy : MonoBehaviour
     private Rigidbody rb;
     private int contadorDisparos = 0;
     public bool esDestruible = false;
+    public float velocidadHélice;
 
     void Start()
     {
@@ -16,6 +17,8 @@ public class Controller_Enemy : MonoBehaviour
     {
         //el enemigo se mueve hacia la izquierda y se verifica si se pasa del limite
         rb.AddForce(new Vector3(-enemyVelocity, 0, 0), ForceMode.Force);
+        //permite la rotacion en el eje z
+        transform.Rotate(Vector3.forward * velocidadHélice * Time.deltaTime);
         OutOfBounds();
     }
 
