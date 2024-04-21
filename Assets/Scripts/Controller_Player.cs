@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Controller_Player : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Controller_Player : MonoBehaviour
     public GameObject prefabProyectil;
     public Transform puntoDisparo;
     public float fuerzaDisparo;
+
+ 
+
 
 
     private void Start()
@@ -74,17 +78,22 @@ public class Controller_Player : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
+        
+
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(this.gameObject);
             Controller_Hud.gameOver = true;
         }
-
         if (collision.gameObject.CompareTag("Floor"))
         {
             floored = true;
         }
+
+       
     }
+
+   
 
     private void OnCollisionExit(Collision collision)
     {
@@ -110,4 +119,5 @@ public class Controller_Player : MonoBehaviour
             }
         }
     }
+
 }
