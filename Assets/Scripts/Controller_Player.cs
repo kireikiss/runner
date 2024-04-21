@@ -8,6 +8,11 @@ public class Controller_Player : MonoBehaviour
     private int i = 0;
     private bool floored;
 
+    public GameObject prefabProyectil;
+    public Transform puntoDisparo;
+    public float fuerzaDisparo;
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -23,6 +28,7 @@ public class Controller_Player : MonoBehaviour
     {
         Jump();
         Duck();
+        Disparar();
     }
 
     private void Jump()
@@ -85,6 +91,23 @@ public class Controller_Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
         {
             floored = false;
+        }
+    }
+
+    private void Disparar()
+    {
+        //al apretar el espacio 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // aparece el proyectil desdeel punto de disparo
+            GameObject projectil = Instantiate(prefabProyectil, puntoDisparo.position, Quaternion.identity);
+
+            // se aplica la fuerza de lanzamiento del proyectil
+            Rigidbody rbProjectil = projectil.GetComponent<Rigidbody>();
+            if (rbProjectil != null)
+            {
+                rbProjectil.AddForce(Vector2.right * fuerzaDisparo, ForceMode.Impulse);
+            }
         }
     }
 }
